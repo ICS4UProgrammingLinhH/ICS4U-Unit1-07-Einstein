@@ -1,4 +1,5 @@
 // import 
+import java.io.*;
 import java.util.Scanner;
 
 /**
@@ -19,28 +20,23 @@ public class EinsteinEquation {
   
   public static void main(String[] args) {
     
+    try {
+    
     // Allow the user to put an input
     Scanner userInput = new Scanner(System.in);
+    
+    // create to write files
+    FileWriter myWriter = new FileWriter("EinsteinEquation.txt");
     
     // Declare variables
     double mass;
     double speedOfLight = 2.998 * Math.pow(10, 8);
     double energy;
-    String massString;
     
     // Ask the user for the mass
     System.out.println("What is the mass of the object?");
     
     // string to input
-    massString = userInput.nextLine();
-    
-    // error checking
-    if (massString.length() == 0) {
-      // print error
-      System.out.println("Error");
-    }
-    
-    // Set the mass to user's input
     mass = userInput.nextDouble();
     
     // Calculate the energy
@@ -48,5 +44,17 @@ public class EinsteinEquation {
     
     // Display the energy
     System.out.println("The energy of the object is: " + energy);
+    
+    // write to text solutions
+    myWriter.write("Energy is: " + energy);
+    
+    // close the write 
+    myWriter.close();
+    
+    } catch (IOException e) {
+      // print error
+      System.out.println("An error occurred.");
+      e.printStackTrace();
+    }
   }
 }
